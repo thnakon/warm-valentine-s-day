@@ -358,6 +358,11 @@ body::before {
 .card-scene {
   perspective: 1200px;
   margin-bottom: 2rem;
+  opacity: 0;
+}
+
+#screen-card.active .card-scene {
+  animation: flyIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
 }
 
 .card-container {
@@ -369,11 +374,6 @@ body::before {
   transform-style: preserve-3d;
   transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
-  opacity: 0;
-}
-
-#screen-card.active .card-container {
-  animation: flyIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
 }
 
 @keyframes flyIn {

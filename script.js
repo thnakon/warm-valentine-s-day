@@ -216,7 +216,6 @@ function scatterPetals() {
 // ===== SCREEN 3: LOVE CARD =====
 function setupCardScreen() {
     const card = document.getElementById('love-card');
-    const finalMessage = document.getElementById('final-message');
     let isFlipped = false;
 
     card.addEventListener('click', () => {
