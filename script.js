@@ -9,18 +9,18 @@ document.addEventListener('DOMContentLoaded', () => {
     function createFloatingHeart() {
         const heart = document.createElement('div');
         heart.classList.add('floating-heart');
-        heart.innerHTML = '❤️';
+        heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        heart.style.animationDuration = (Math.random() * 5 + 5) + 's';
+        heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
         heartContainer.appendChild(heart);
 
         setTimeout(() => {
             heart.remove();
-        }, 10000);
+        }, 25000);
     }
 
-    setInterval(createFloatingHeart, 500);
+    setInterval(createFloatingHeart, 1500);
 
     // Envelope click to open
     envelope.addEventListener('click', (e) => {
@@ -41,13 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
     gardenOverlay.addEventListener('click', (e) => {
         if (e.target === closeGarden) return;
 
-        const flowers = ['🌸', '🌹', '🌺', '🌻', '🌷', '✨', '❤️'];
+        const icons = [
+            'fa-solid fa-spa',
+            'fa-solid fa-leaf',
+            'fa-solid fa-clover',
+            'fa-solid fa-bahai',
+            'fa-solid fa-seedling',
+            'fa-solid fa-heart'
+        ];
         const flower = document.createElement('div');
         flower.classList.add('flower');
-        flower.innerHTML = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.innerHTML = `<i class="${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
         flower.style.left = (e.clientX - 20) + 'px';
         flower.style.top = (e.clientY - 20) + 'px';
-        
+
         gardenOverlay.appendChild(flower);
 
         // Optional: Remove after animation to keep DOM clean
