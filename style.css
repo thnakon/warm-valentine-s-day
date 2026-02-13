@@ -670,16 +670,41 @@ body::before {
 
 /* Mobile adjustments */
 @media (max-width: 768px) {
+  .final-img {
+    width: 280px;
+  }
   .extra-img {
-    width: 140px;
+    width: 120px;
   }
   .final-visual:hover .img-left {
-    left: -80px;
-    top: -50px;
+    left: -40px;
+    top: -40px;
   }
   .final-visual:hover .img-right {
-    right: -80px;
-    top: 150px;
+    right: -40px;
+    top: 120px;
+  }
+  .speech-bubble {
+    font-size: 1.6rem;
+    padding: 1rem 1.5rem;
+    max-width: 85vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .final-img {
+    width: 240px;
+  }
+  .extra-img {
+    width: 100px;
+  }
+  .final-visual:hover .img-left {
+    left: -20px;
+    top: -30px;
+  }
+  .final-visual:hover .img-right {
+    right: -20px;
+    top: 100px;
   }
 }
 
