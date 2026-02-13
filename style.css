@@ -139,12 +139,13 @@ body::before {
 }
 
 .question-title {
-  font-family: 'Mitr', sans-serif;
-  font-weight: 500;
-  font-size: 2rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 3rem;
   color: var(--pink-deep);
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 8px rgba(233, 30, 99, 0.1);
+  white-space: nowrap;
 }
 
 .question-subtitle {

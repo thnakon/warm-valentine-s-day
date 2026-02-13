@@ -24,21 +24,32 @@ function createFloatingHearts() {
         heart.classList.add('floating-heart');
         heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
         heart.style.color = '#ffb6c1';
-        heart.style.left = Math.random() * 100 + 'vw';
+
+        // Start from top or right (top-right corner area)
+        const startFromTop = Math.random() > 0.5;
+        if (startFromTop) {
+            heart.style.top = '-5vh';
+            heart.style.left = (50 + Math.random() * 60) + 'vw';
+        } else {
+            heart.style.top = (Math.random() * 50) + 'vh';
+            heart.style.left = '105vw';
+        }
+
         heart.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
-        heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+        // Slow down speed: 10s to 18s duration
+        heart.style.animationDuration = (Math.random() * 8 + 10) + 's';
         heart.style.animationDelay = '0s';
         container.appendChild(heart);
 
-        // Remove after animation
-        setTimeout(() => heart.remove(), 15000);
+        // Remove after animation (matches max duration)
+        setTimeout(() => heart.remove(), 20000);
     }
 
-    // Spawn hearts periodically
-    setInterval(spawnHeart, 800);
+    // Spawn hearts slower
+    setInterval(spawnHeart, 1500);
     // Initial batch
-    for (let i = 0; i < 8; i++) {
-        setTimeout(spawnHeart, i * 300);
+    for (let i = 0; i < 5; i++) {
+        setTimeout(spawnHeart, i * 600);
     }
 }
 
