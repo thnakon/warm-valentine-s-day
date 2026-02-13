@@ -74,14 +74,14 @@ body::before {
   position: absolute;
   font-size: 1.2rem;
   opacity: 0;
-  animation: floatUp linear infinite;
+  animation: floatDiagonal linear infinite;
   pointer-events: none;
   filter: drop-shadow(0 0 4px rgba(255, 105, 135, 0.3));
 }
 
-@keyframes floatUp {
+@keyframes floatDiagonal {
   0% {
-    transform: translateY(100vh) rotate(0deg) scale(0.5);
+    transform: translate(0, 0) rotate(0deg) scale(0.5);
     opacity: 0;
   }
   10% {
@@ -91,7 +91,7 @@ body::before {
     opacity: 0.4;
   }
   100% {
-    transform: translateY(-10vh) rotate(360deg) scale(1);
+    transform: translate(-120vw, 120vh) rotate(360deg) scale(1);
     opacity: 0;
   }
 }
