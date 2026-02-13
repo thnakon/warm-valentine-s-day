@@ -226,13 +226,14 @@ function scatterPetals() {
 let typingTimeout = null;
 const messages = {
     en: "To Eye,\n\nThis gift might be simple and not anything fancy, but I want you to know that I chose it, prepared it, and gave it to you with all my heart. Thank you for being with me in all those ordinary days and somehow making them feel special. Being with you makes me feel calm and happy, and I’m really grateful to have you by my side.\n\nI may not be the best with words or romance, but I just want you to know that I’m glad we’re walking this path together. From now on, I hope we can keep staying side by side for as long as we can. Happy Valentine’s Day.",
-    th: "ถึง Eye,\n\nของขวัญชิ้นนี้อาจจะดูธรรมดา ไม่ได้หวือหวาอะไร แต่เราอยากให้รู้ว่าคนให้ตั้งใจเลือก ตั้งใจทำ และตั้งใจให้จริง ๆ ขอบคุณที่อยู่ด้วยกันในทุกวันธรรมดา ๆ ที่ทำให้มันไม่ธรรมดาเลย อยู่ด้วยแล้วสบายใจ ดีใจที่มีเธออยู่ข้าง ๆ เสมอ\n\nอาจไม่ใช่คนพูดเก่งหรือโรแมนติก แต่ก็อยากบอกว่าดีใจนะที่เราได้เดินมาด้วยกันแบบนี้ ต่อจากนี้ก็ขออยู่ข้าง ๆ กันไปเรื่อย ๆ เท่าที่จะทำได้ สุขสันต์วันวาเลนไทน์นะ"
+    th: "ถึง น้องอาย,\n\nของขวัญชิ้นนี้อาจจะดูธรรมดา ไม่ได้หวือหวาอะไร แต่ปี่อยากให้รู้ว่าคนให้ตั้งใจเลือก ตั้งใจทำ และตั้งใจให้จริง ๆ ขอบคุณที่อยู่ด้วยกันในทุกวันธรรมดา ๆ ที่ทำให้มันไม่ธรรมดาเลย อยู่ด้วยแล้วสบายใจ ดีใจที่มีอ้วนอยู่ข้าง ๆ เสมอ\n\nอาจไม่ใช่คนพูดเก่งหรือโรแมนติก แต่ก็อยากบอกว่าดีใจนะที่เราได้เดินมาด้วยกันแบบนี้ ต่อจากนี้ก็ขออยู่ข้าง ๆ กันไปเรื่อย ๆ เท่าที่จะทำได้ สุขสันต์วันวาเลนไทน์นะ"
 };
 
 function setupCardScreen() {
     const card = document.getElementById('love-card');
     const btnEn = document.getElementById('btn-lang-en');
     const btnTh = document.getElementById('btn-lang-th');
+    const langContainer = document.getElementById('lang-toggle');
     const messageEl = document.getElementById('typing-message');
     let isFlipped = false;
 
@@ -253,27 +254,27 @@ function setupCardScreen() {
             setTimeout(() => {
                 celebrationBurst();
 
-                // Show Continue button after flip
+                // Show Language toggle and Continue button after flip
                 const btnContinue = document.getElementById('btn-continue');
                 btnContinue.style.display = 'block';
+                langContainer.style.display = 'flex';
                 setTimeout(() => {
                     btnContinue.style.opacity = '1';
+                    langContainer.style.opacity = '1';
                 }, 100);
             }, 800);
         }
     });
 
     // Language Toggles
-    btnEn.addEventListener('click', (e) => {
-        e.stopPropagation();
+    btnEn.addEventListener('click', () => {
         if (btnEn.classList.contains('active')) return;
         btnEn.classList.add('active');
         btnTh.classList.remove('active');
         startTyping(messageEl, messages.en);
     });
 
-    btnTh.addEventListener('click', (e) => {
-        e.stopPropagation();
+    btnTh.addEventListener('click', () => {
         if (btnTh.classList.contains('active')) return;
         btnTh.classList.add('active');
         btnEn.classList.remove('active');

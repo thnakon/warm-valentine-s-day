@@ -72,10 +72,6 @@
           <div class="card-face card-back">
             <div class="card-inside-content">
               <h2 class="card-greeting">Happy Valentine's Day! <i data-lucide="heart" style="display: inline-block; width: 24px; color: #e91e63; fill: #e91e63;"></i></h2>
-              <div class="lang-toggle-container">
-                <button id="btn-lang-en" class="lang-btn active">EN</button>
-                <button id="btn-lang-th" class="lang-btn">TH</button>
-              </div>
               <div id="typing-message" class="card-message">
                 <!-- Content will be typed by JS -->
               </div>
@@ -85,9 +81,16 @@
           </div>
         </div>
       </div>
-      <button id="btn-continue" class="btn btn-continue" style="display: none; opacity: 0; transition: opacity 1s ease;">
-        <span>Continue <i data-lucide="heart" style="width: 14px; height: 14px; vertical-align: middle; fill: #e91e63; color: #e91e63;"></i></span>
-      </button>
+      
+      <div class="card-actions">
+        <div id="lang-toggle" class="lang-toggle-container" style="display: none; opacity: 0; transition: opacity 1s ease;">
+          <button id="btn-lang-en" class="lang-btn active">EN</button>
+          <button id="btn-lang-th" class="lang-btn">TH</button>
+        </div>
+        <button id="btn-continue" class="btn btn-continue" style="display: none; opacity: 0; transition: opacity 1s ease;">
+          <span>Continue <i data-lucide="heart" style="width: 14px; height: 14px; vertical-align: middle; fill: #e91e63; color: #e91e63;"></i></span>
+        </button>
+      </div>
     </div>
   </section>
 
