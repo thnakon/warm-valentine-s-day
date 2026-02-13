@@ -1,74 +1,275 @@
+// ===== Valentine's Day Surprise Website =====
+
 document.addEventListener('DOMContentLoaded', () => {
-    const envelope = document.getElementById('envelope');
-    const card = document.getElementById('card');
-    const heartContainer = document.getElementById('heartContainer');
-    const gardenOverlay = document.getElementById('gardenOverlay');
-    const closeGarden = document.getElementById('closeGarden');
+    // Start floating hearts background
+    createFloatingHearts();
 
-    // Create background floating hearts
-    function createFloatingHeart() {
-        const heart = document.createElement('div');
+    // Screen 1: Question
+    setupQuestionScreen();
+
+    // Screen 2: Bouquet
+    setupBouquetScreen();
+
+    // Screen 3: Card
+    setupCardScreen();
+});
+
+// ===== FLOATING HEARTS BACKGROUND =====
+function createFloatingHearts() {
+    const container = document.getElementById('hearts-container');
+    const hearts = ['💕', '💗', '💖', '💞', '🩷', '🤍', '✨', '🌸'];
+
+    function spawnHeart() {
+        const heart = document.createElement('span');
         heart.classList.add('floating-heart');
-        heart.innerHTML = '<i class="fa-solid fa-heart"></i>';
+        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
         heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
-        heart.style.animationDuration = (Math.random() * 10 + 15) + 's';
-        heartContainer.appendChild(heart);
+        heart.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
+        heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
+        heart.style.animationDelay = '0s';
+        container.appendChild(heart);
 
-        setTimeout(() => {
-            heart.remove();
-        }, 25000);
+        // Remove after animation
+        setTimeout(() => heart.remove(), 15000);
     }
 
-    setInterval(createFloatingHeart, 1500);
+    // Spawn hearts periodically
+    setInterval(spawnHeart, 800);
+    // Initial batch
+    for (let i = 0; i < 8; i++) {
+        setTimeout(spawnHeart, i * 300);
+    }
+}
 
-    // Envelope click to open
-    envelope.addEventListener('click', (e) => {
-        if (!envelope.classList.contains('open')) {
-            envelope.classList.add('open');
-        }
-    });
+// ===== SCREEN 1: QUESTION =====
+function setupQuestionScreen() {
+    const btnYes = document.getElementById('btn-yes');
+    const btnNo = document.getElementById('btn-no');
 
-    // Card click to open garden surprise
-    card.addEventListener('click', (e) => {
-        if (envelope.classList.contains('open')) {
-            e.stopPropagation(); // Don't trigger envelope closing if added later
-            gardenOverlay.style.display = 'flex';
-        }
-    });
-
-    // Garden bloom logic
-    gardenOverlay.addEventListener('click', (e) => {
-        if (e.target === closeGarden) return;
-
-        const icons = [
-            'fa-solid fa-spa',
-            'fa-solid fa-leaf',
-            'fa-solid fa-clover',
-            'fa-solid fa-bahai',
-            'fa-solid fa-seedling',
-            'fa-solid fa-heart'
-        ];
-        const flower = document.createElement('div');
-        flower.classList.add('flower');
-        flower.innerHTML = `<i class="${icons[Math.floor(Math.random() * icons.length)]}"></i>`;
-        flower.style.left = (e.clientX - 20) + 'px';
-        flower.style.top = (e.clientY - 20) + 'px';
-
-        gardenOverlay.appendChild(flower);
-
-        // Optional: Remove after animation to keep DOM clean
+    // YES button → heart explosion + transition
+    btnYes.addEventListener('click', () => {
+        heartExplosion(btnYes);
         setTimeout(() => {
-            flower.style.opacity = '0';
-            flower.style.transition = 'opacity 1s ease';
-            setTimeout(() => flower.remove(), 1000);
-        }, 2000);
+            transitionToScreen('screen-bouquet');
+        }, 1200);
     });
 
-    closeGarden.addEventListener('click', () => {
-        gardenOverlay.style.display = 'none';
-        // Clear all flowers when closing
-        const activeFlowers = gardenOverlay.querySelectorAll('.flower');
-        activeFlowers.forEach(f => f.remove());
+    // NO button → dodge cursor playfully
+    let dodgeCount = 0;
+    const maxDodges = 5;
+    const messages = [
+        'ไม่เอาา 😜',
+        'กดไม่ได้น้า~ 😏',
+        'เธอแน่ใจเหรอ? 🥺',
+        'ลองใหม่สิ~ 😘',
+        'ฉันไม่ยอม! 💪',
+        'กดอีกฝั่งสิ~ 💖'
+    ];
+
+    function dodgeButton() {
+        dodgeCount++;
+        btnNo.querySelector('span').textContent = messages[dodgeCount % messages.length];
+
+        if (dodgeCount >= maxDodges) {
+            // After several dodges, auto-click Yes
+            btnNo.querySelector('span').textContent = 'โอเค ยอมละ 😍';
+            btnNo.style.pointerEvents = 'none';
+            setTimeout(() => {
+                btnYes.click();
+            }, 800);
+            return;
+        }
+
+        const parent = btnNo.closest('.button-group');
+        const parentRect = parent.getBoundingClientRect();
+        const btnRect = btnNo.getBoundingClientRect();
+
+        // Random position within reasonable bounds
+        const maxX = parentRect.width - btnRect.width;
+        const maxY = 100;
+        const randomX = Math.random() * maxX - maxX / 2;
+        const randomY = Math.random() * maxY - maxY / 2;
+
+        btnNo.style.transform = `translate(${randomX}px, ${randomY}px)`;
+    }
+
+    // Dodge on both hover and touch
+    btnNo.addEventListener('mouseenter', dodgeButton);
+    btnNo.addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        dodgeButton();
     });
-});
+}
+
+// ===== HEART EXPLOSION EFFECT =====
+function heartExplosion(origin) {
+    const rect = origin.getBoundingClientRect();
+    const container = document.createElement('div');
+    container.classList.add('heart-explosion');
+    container.style.left = rect.left + rect.width / 2 + 'px';
+    container.style.top = rect.top + rect.height / 2 + 'px';
+    document.body.appendChild(container);
+
+    const emojis = ['❤️', '💕', '💖', '💗', '💞', '🩷', '✨', '🌸', '💐'];
+
+    for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('span');
+        heart.classList.add('explosion-heart');
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        const angle = (Math.PI * 2 * i) / 20;
+        const distance = 80 + Math.random() * 120;
+        heart.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
+        heart.style.setProperty('--ty', Math.sin(angle) * distance + 'px');
+        heart.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        heart.style.animationDelay = Math.random() * 0.3 + 's';
+        container.appendChild(heart);
+    }
+
+    setTimeout(() => container.remove(), 2000);
+}
+
+// ===== SCREEN TRANSITIONS =====
+function transitionToScreen(targetId) {
+    const screens = document.querySelectorAll('.screen');
+
+    // Create transition overlay
+    const overlay = document.createElement('div');
+    overlay.classList.add('transition-overlay');
+    document.body.appendChild(overlay);
+
+    // Fade in overlay
+    requestAnimationFrame(() => {
+        overlay.classList.add('active');
+    });
+
+    setTimeout(() => {
+        // Hide all screens
+        screens.forEach(s => s.classList.remove('active'));
+        // Show target
+        document.getElementById(targetId).classList.add('active');
+
+        // Fade out overlay
+        setTimeout(() => {
+            overlay.classList.remove('active');
+            setTimeout(() => overlay.remove(), 600);
+        }, 300);
+    }, 500);
+}
+
+// ===== SCREEN 2: BOUQUET =====
+function setupBouquetScreen() {
+    const bouquet = document.getElementById('bouquet-click');
+
+    bouquet.addEventListener('click', () => {
+        // Scatter petals
+        scatterPetals();
+
+        // Add a little shake
+        bouquet.style.animation = 'none';
+        bouquet.offsetHeight; // trigger reflow
+        bouquet.style.animation = 'shake 0.5s ease';
+
+        // Transition to card after petals
+        setTimeout(() => {
+            transitionToScreen('screen-card');
+        }, 1800);
+    });
+}
+
+function scatterPetals() {
+    const container = document.getElementById('petals-container');
+    const petalColors = ['#ffb6c1', '#ff69b4', '#ff85a2', '#ffc0cb', '#ffe4ec', '#fff0f5'];
+
+    for (let i = 0; i < 30; i++) {
+        const petal = document.createElement('div');
+        petal.classList.add('petal');
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.top = -20 + Math.random() * 20 + 'px';
+        petal.style.width = (Math.random() * 15 + 10) + 'px';
+        petal.style.height = (Math.random() * 15 + 10) + 'px';
+        petal.style.background = petalColors[Math.floor(Math.random() * petalColors.length)];
+        petal.style.setProperty('--drift', (Math.random() * 200 - 100) + 'px');
+        petal.style.animationDuration = (Math.random() * 3 + 2) + 's';
+        petal.style.animationDelay = Math.random() * 1 + 's';
+        container.appendChild(petal);
+    }
+
+    // Clean up petals after animation
+    setTimeout(() => {
+        container.innerHTML = '';
+    }, 5000);
+}
+
+// ===== SCREEN 3: LOVE CARD =====
+function setupCardScreen() {
+    const card = document.getElementById('love-card');
+    const finalMessage = document.getElementById('final-message');
+    let isFlipped = false;
+
+    card.addEventListener('click', () => {
+        if (!isFlipped) {
+            card.classList.add('flipped');
+            isFlipped = true;
+
+            // Create sparkles inside card
+            createSparkles();
+
+            // Show final message
+            setTimeout(() => {
+                finalMessage.classList.add('visible');
+                // Create a final burst of floating hearts
+                celebrationBurst();
+            }, 1200);
+        }
+    });
+}
+
+function createSparkles() {
+    const container = document.getElementById('card-sparkles');
+    const colors = ['#ff4081', '#ff69b4', '#ffb6c1', '#ffc107', '#fff'];
+
+    for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.classList.add('sparkle');
+        sparkle.style.left = Math.random() * 100 + '%';
+        sparkle.style.top = Math.random() * 100 + '%';
+        sparkle.style.width = (Math.random() * 6 + 3) + 'px';
+        sparkle.style.height = sparkle.style.width;
+        sparkle.style.background = colors[Math.floor(Math.random() * colors.length)];
+        sparkle.style.animationDelay = Math.random() * 2 + 's';
+        sparkle.style.animationDuration = (Math.random() * 1.5 + 1) + 's';
+        container.appendChild(sparkle);
+    }
+}
+
+function celebrationBurst() {
+    const hearts = ['❤️', '💕', '💖', '💗', '🩷', '✨', '🌸', '💐', '🥰'];
+    const container = document.getElementById('hearts-container');
+
+    for (let i = 0; i < 15; i++) {
+        setTimeout(() => {
+            const heart = document.createElement('span');
+            heart.classList.add('floating-heart');
+            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
+            heart.style.animationDelay = '0s';
+            container.appendChild(heart);
+            setTimeout(() => heart.remove(), 10000);
+        }, i * 200);
+    }
+}
+
+// ===== SHAKE ANIMATION (Added dynamically) =====
+const shakeStyle = document.createElement('style');
+shakeStyle.textContent = `
+  @keyframes shake {
+    0%, 100% { transform: translateX(0) rotate(0deg); }
+    20% { transform: translateX(-8px) rotate(-3deg); }
+    40% { transform: translateX(8px) rotate(3deg); }
+    60% { transform: translateX(-5px) rotate(-2deg); }
+    80% { transform: translateX(5px) rotate(2deg); }
+  }
+`;
+document.head.appendChild(shakeStyle);

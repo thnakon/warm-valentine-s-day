@@ -1,47 +1,87 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Valentine's Surprise for You ❤️</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Valentine's Day 💕</title>
+  <meta name="description" content="A special Valentine's Day surprise just for you 💕">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Mitr:wght@200;300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="heart-container" id="heartContainer"></div>
-    
-    <div class="container">
-        <div class="envelope-wrapper">
-            <div class="envelope" id="envelope">
-                <div class="front">
-                    <div class="flap"></div>
-                    <div class="pocket"></div>
-                    <div class="heart-sticker"><i class="fa-solid fa-heart"></i></div>
-                </div>
-                <div class="card" id="card">
-                    <div class="card-content">
-                        <h1>Happy Valentine's Day! <i class="fa-solid fa-heart-pulse"></i></h1>
-                        <p class="handwriting">My dearest love,</p>
-                        <p class="message">
-                            Every moment with you is like a beautiful dream come true. You make my world brighter and my heart fuller. 
-                            I'm so lucky to have you in my life.
-                        </p>
-                        <p class="handwriting signature">With all my love, [Your Name]</p>
-                        <div class="interactive-prompt">Click the card to see the garden bloom...</div>
-                    </div>
-                </div>
-            </div>
+  <!-- Floating Hearts Background -->
+  <div id="hearts-container"></div>
+
+  <!-- ===== SCREEN 1: QUESTION ===== -->
+  <section id="screen-question" class="screen active">
+    <div class="screen-content">
+      <div class="envelope-icon">💌</div>
+      <h1 class="question-title">สวัสดีวันวาเลนไทน์</h1>
+      <p class="question-subtitle">มีคำถามอยากถามหน่อยนะ...</p>
+      <div class="question-card">
+        <p class="question-text">จะเป็นวาเลนไทน์ <br>ของฉันไหม? 💕</p>
+        <div class="button-group">
+          <button id="btn-yes" class="btn btn-yes">
+            <span>ได้สิ! 💖</span>
+          </button>
+          <button id="btn-no" class="btn btn-no">
+            <span>ไม่เอาา 😜</span>
+          </button>
         </div>
+      </div>
     </div>
+  </section>
 
-    <div class="garden-overlay" id="gardenOverlay">
-        <div class="garden-prompt">Tap anywhere to bloom flowers! <i class="fa-solid fa-wand-sparkles"></i></div>
-        <button class="close-garden" id="closeGarden">Back to Card</button>
+  <!-- ===== SCREEN 2: FLOWER BOUQUET ===== -->
+  <section id="screen-bouquet" class="screen">
+    <div class="screen-content">
+      <h2 class="bouquet-title">เก็บช่อดอกไม้นี้ไว้นะ 🌸</h2>
+      <p class="bouquet-subtitle">กดที่ช่อดอกไม้เพื่อรับเซอร์ไพรส์ต่อ</p>
+      <div class="bouquet-wrapper" id="bouquet-click">
+        <img src="assets/bouquet.png" alt="Flower Bouquet" class="bouquet-image">
+        <div class="bouquet-glow"></div>
+      </div>
+      <div class="petals-container" id="petals-container"></div>
     </div>
+  </section>
 
-    <script src="script.js"></script>
+  <!-- ===== SCREEN 3: LOVE CARD ===== -->
+  <section id="screen-card" class="screen">
+    <div class="screen-content">
+      <div class="card-scene">
+        <div class="card-container" id="love-card">
+          <!-- Card Front -->
+          <div class="card-face card-front">
+            <div class="card-front-decoration">
+              <span class="card-heart">❤️</span>
+              <p class="card-front-text">Happy<br>Valentine's Day</p>
+              <span class="card-tap-hint">แตะเพื่อเปิดอ่าน 💕</span>
+            </div>
+          </div>
+          <!-- Card Back / Inside -->
+          <div class="card-face card-back">
+            <div class="card-inside-content">
+              <h2 class="card-greeting">ถึงคนพิเศษ 💗</h2>
+              <div class="card-message">
+                <p>ขอบคุณที่อยู่ข้างๆ กันเสมอนะ</p>
+                <p>ทุกวันที่มีเธออยู่<br>คือวันที่ดีที่สุดของฉัน</p>
+                <p>รักเธอที่สุดเลย 💕</p>
+              </div>
+              <p class="card-signature">— ด้วยรักจากฉัน 🤍</p>
+              <div class="card-sparkles" id="card-sparkles"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="final-message" id="final-message">
+        <p class="final-text">Happy Valentine's Day 🥰</p>
+        <p class="final-subtext">รักเธอนะ 💕</p>
+      </div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
 </body>
 </html>
