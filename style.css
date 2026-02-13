@@ -705,6 +705,44 @@ body::before {
   border-bottom: 15px solid white;
 }
 
+/* ===== ADDITIONAL EFFECTS ===== */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.confetti-heart {
+  position: absolute;
+  font-size: 1.5rem;
+  animation: fallDown linear forwards;
+}
+
+@keyframes fallDown {
+  0% { transform: translateY(-50px) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1.2em;
+  background-color: var(--pink-deep);
+  margin-left: 2px;
+  animation: blink 0.8s infinite;
+  vertical-align: middle;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
   from {

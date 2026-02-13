@@ -72,10 +72,8 @@
           <div class="card-face card-back">
             <div class="card-inside-content">
               <h2 class="card-greeting">Happy Valentine's Day! <i data-lucide="heart" style="display: inline-block; width: 24px; color: #e91e63; fill: #e91e63;"></i></h2>
-              <div class="card-message">
-                <p>To my dearest Eye,</p>
-                <p>You are the most beautiful thing that ever happened to me. Thank you for filling my days with joy and my heart with so much love.</p>
-                <p>I promise to be by your side, to cherish you, and to love you more with every passing day. You mean everything to me, forever and always.</p>
+              <div id="typing-message" class="card-message">
+                <!-- Content will be typed by JS -->
               </div>
               <p class="card-signature">— With all my love,</p>
               <div class="card-sparkles" id="card-sparkles"></div>
@@ -107,6 +105,14 @@
   <div id="runner-container" class="runner-container">
     <img src="assets/runner.png" alt="Cute Runner" class="runner-img">
   </div>
+
+  <!-- Audio Element -->
+  <audio id="bg-music" loop>
+    <source src="https://pro-assets.hyperhire.in/audio/romantic-piano.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Final Confetti Container -->
+  <div id="confetti-container" class="confetti-container"></div>
 
   <script src="script.js"></script>
   <script>

@@ -61,6 +61,7 @@ function setupQuestionScreen() {
     // YES button → heart explosion + transition
     btnYes.addEventListener('click', () => {
         heartExplosion(btnYes);
+        playMusic(); // Start background music
         setTimeout(() => {
             transitionToScreen('screen-bouquet');
         }, 1200);
@@ -234,6 +235,13 @@ function setupCardScreen() {
             // Create sparkles inside card
             createSparkles();
 
+            // Start Typing Message for Eye
+            setTimeout(() => {
+                const messageEl = document.getElementById('typing-message');
+                const fullText = "To my dearest Eye,\n\nYou are the most beautiful thing that ever happened to me. Thank you for filling my days with joy and my heart with so much love.\n\nI promise to be by your side, to cherish you, and to love you more with every passing day. You mean everything to me, forever and always.";
+                startTyping(messageEl, fullText);
+            }, 600);
+
             // Trigger celebration burst on flip
             setTimeout(() => {
                 celebrationBurst();
@@ -255,6 +263,7 @@ function setupCardScreen() {
         setTimeout(() => {
             // Final big celebration
             celebrationBurst();
+            startConfetti(); // Show falling hearts on final screen
             setTimeout(celebrationBurst, 1000);
         }, 1000);
     });
@@ -310,3 +319,75 @@ shakeStyle.textContent = `
   }
 `;
 document.head.appendChild(shakeStyle);
+
+// ===== ADDITIONAL HELPER FUNCTIONS =====
+
+function playMusic() {
+    const music = document.getElementById('bg-music');
+    if (music) {
+        music.volume = 0.5;
+        music.play().catch(e => console.log("Audio play blocked by browser."));
+    }
+}
+
+function startTyping(container, text) {
+    container.innerHTML = '';
+    let i = 0;
+
+    // Add cursor
+    const cursor = document.createElement('span');
+    cursor.classList.add('typing-cursor');
+
+    function type() {
+        if (i < text.length) {
+            const char = text.charAt(i);
+            if (char === '\n') {
+                container.appendChild(document.createElement('br'));
+            } else {
+                const span = document.createElement('span');
+                span.textContent = char;
+                span.style.opacity = '0';
+                span.style.transition = 'opacity 0.1s ease';
+                container.appendChild(span);
+                setTimeout(() => span.style.opacity = '1', 10);
+            }
+            i++;
+            container.appendChild(cursor);
+            setTimeout(type, 50); // Typing speed
+        } else {
+            // Typing finished, remove cursor after a bit
+            setTimeout(() => cursor.remove(), 2000);
+        }
+    }
+
+    type();
+}
+
+function startConfetti() {
+    const container = document.getElementById('confetti-container');
+    const symbols = ['♥', '❤', '💖', '🌸', '✨'];
+
+    function spawnConfetti() {
+        const confetti = document.createElement('span');
+        confetti.classList.add('confetti-heart');
+        confetti.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.color = ['#ff4081', '#ff69b4', '#ffb6c1'][Math.floor(Math.random() * 3)];
+        confetti.style.fontSize = (Math.random() * 1.5 + 1) + 'rem';
+        confetti.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+        container.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 5000);
+    }
+
+    // Initial burst
+    for (let i = 0; i < 30; i++) {
+        setTimeout(spawnConfetti, i * 100);
+    }
+
+    // Constant drizzle
+    const interval = setInterval(spawnConfetti, 300);
+
+    // Stop after 20 seconds to save performance
+    setTimeout(() => clearInterval(interval), 20000);
+}
