@@ -146,6 +146,7 @@ body::before {
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 8px rgba(233, 30, 99, 0.1);
   padding: 0 0.5rem;
+  line-height: 1.2;
 }
 
 .question-subtitle {
@@ -508,53 +509,6 @@ body::before {
   font-size: 1.8rem;
   color: var(--pink-deep);
   margin-bottom: 1.5rem;
-}
-
-/* Language Toggle */
-.card-actions {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
-.lang-toggle-container {
-  position: fixed;
-  top: 25px;
-  right: 25px;
-  display: flex;
-  gap: 0.5rem;
-  z-index: 2000;
-  opacity: 0;
-  transition: all 1s ease;
-  background: rgba(255, 255, 255, 0.7);
-  padding: 8px;
-  border-radius: 30px;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  box-shadow: 0 4px 15px rgba(233, 30, 99, 0.1);
-}
-
-.lang-btn {
-  background: white;
-  border: 1px solid var(--pink-soft);
-  color: var(--pink-deep);
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.lang-btn.active {
-  background: var(--pink-deep);
-  color: white;
-  border-color: var(--pink-deep);
-}
-
-.lang-btn:hover:not(.active) {
-  background: var(--pink-light);
 }
 
 .card-message {

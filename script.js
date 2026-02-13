@@ -231,9 +231,6 @@ const messages = {
 
 function setupCardScreen() {
     const card = document.getElementById('love-card');
-    const btnEn = document.getElementById('btn-lang-en');
-    const btnTh = document.getElementById('btn-lang-th');
-    const langContainer = document.getElementById('lang-toggle');
     const messageEl = document.getElementById('typing-message');
     let isFlipped = false;
 
@@ -245,40 +242,23 @@ function setupCardScreen() {
             // Create sparkles inside card
             createSparkles();
 
-            // Start Typing Message
+            // Start Typing Message (Thai version by default)
             setTimeout(() => {
-                startTyping(messageEl, messages.en);
+                startTyping(messageEl, messages.th);
             }, 600);
 
             // Trigger celebration burst on flip
             setTimeout(() => {
                 celebrationBurst();
 
-                // Show Language toggle and Continue button after flip
+                // Show Continue button after flip
                 const btnContinue = document.getElementById('btn-continue');
                 btnContinue.style.display = 'block';
-                langContainer.style.display = 'flex';
                 setTimeout(() => {
                     btnContinue.style.opacity = '1';
-                    langContainer.style.opacity = '1';
                 }, 100);
             }, 800);
         }
-    });
-
-    // Language Toggles
-    btnEn.addEventListener('click', () => {
-        if (btnEn.classList.contains('active')) return;
-        btnEn.classList.add('active');
-        btnTh.classList.remove('active');
-        startTyping(messageEl, messages.en);
-    });
-
-    btnTh.addEventListener('click', () => {
-        if (btnTh.classList.contains('active')) return;
-        btnTh.classList.add('active');
-        btnEn.classList.remove('active');
-        startTyping(messageEl, messages.th);
     });
 
     // Handle Continue to Final screen
