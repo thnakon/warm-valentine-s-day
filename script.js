@@ -227,15 +227,10 @@ function setupCardScreen() {
             // Create sparkles inside card
             createSparkles();
 
-            // After reading time, push card up and show message almost simultaneously
+            // Trigger celebration burst on flip
             setTimeout(() => {
-                document.querySelector('.card-scene').classList.add('pushed-up');
-
-                setTimeout(() => {
-                    finalMessage.classList.add('visible');
-                    celebrationBurst();
-                }, 300); // Appear sooner as card is pushed
-            }, 3000);
+                celebrationBurst();
+            }, 500);
         }
     });
 }

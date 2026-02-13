@@ -358,22 +358,16 @@ body::before {
 .card-scene {
   perspective: 1200px;
   margin-bottom: 2rem;
-  transition: transform 1s ease 0.8s;
-}
-
-.card-scene.pushed-up {
-  transform: translateY(-120vh) rotate(-10deg);
-  opacity: 0;
 }
 
 .card-container {
-  width: 300px;
-  max-width: 85vw;
-  height: 420px;
+  width: 320px;
+  max-width: 90vw;
+  height: 460px;
   margin: 0 auto;
   position: relative;
   transform-style: preserve-3d;
-  transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   opacity: 0;
 }
@@ -394,7 +388,7 @@ body::before {
 }
 
 .card-container.flipped {
-  transform: rotateY(180deg) scale(0.8);
+  transform: rotateY(180deg);
 }
 
 .card-face {
@@ -412,13 +406,13 @@ body::before {
 .card-front {
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.9) 0%,
-    rgba(255, 240, 245, 0.95) 50%,
-    rgba(255, 228, 236, 0.9) 100%
+    rgba(255, 255, 255, 0.95) 0%,
+    rgba(255, 240, 245, 0.98) 50%,
+    rgba(255, 228, 236, 0.95) 100%
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 2px solid rgba(255, 182, 193, 0.4);
+  border: 2px solid rgba(255, 182, 193, 0.5);
   box-shadow: var(--shadow-card);
   display: flex;
   align-items: center;
@@ -438,7 +432,7 @@ body::before {
 
 .card-front-text {
   font-family: 'Dancing Script', cursive;
-  font-size: 2rem;
+  font-size: 2.2rem;
   font-weight: 700;
   color: var(--pink-deep);
   line-height: 1.4;
@@ -449,7 +443,7 @@ body::before {
 .card-tap-hint {
   font-family: 'Mitr', sans-serif;
   font-weight: 200;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: var(--text-light);
   opacity: 0.7;
   animation: fadeInOut 2s ease-in-out infinite;
@@ -463,12 +457,12 @@ body::before {
 .card-back {
   background: linear-gradient(
     145deg,
-    rgba(255, 255, 255, 0.95) 0%,
-    rgba(255, 245, 248, 0.98) 100%
+    rgba(255, 255, 255, 0.98) 0%,
+    rgba(255, 245, 248, 1) 100%
   );
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 2px solid rgba(255, 182, 193, 0.3);
+  border: 2px solid rgba(255, 182, 193, 0.4);
   box-shadow: var(--shadow-card);
   transform: rotateY(180deg);
   display: flex;
@@ -477,15 +471,16 @@ body::before {
 }
 
 .card-inside-content {
-  padding: 2rem 1.5rem;
+  padding: 2.5rem 2rem;
   position: relative;
   text-align: center;
+  width: 100%;
 }
 
 .card-greeting {
-  font-family: 'Mitr', sans-serif;
-  font-weight: 500;
-  font-size: 1.5rem;
+  font-family: 'Dancing Script', cursive;
+  font-weight: 700;
+  font-size: 1.8rem;
   color: var(--pink-deep);
   margin-bottom: 1.5rem;
 }
@@ -493,20 +488,20 @@ body::before {
 .card-message {
   font-family: 'Mitr', sans-serif;
   font-weight: 300;
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: var(--text-dark);
-  line-height: 2;
+  line-height: 1.7;
   margin-bottom: 1.5rem;
 }
 
 .card-message p {
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
 }
 
 .card-signature {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
   color: var(--rose-gold);
   margin-top: 1rem;
 }
@@ -539,54 +534,6 @@ body::before {
   50% {
     opacity: 1;
     transform: scale(1);
-  }
-}
-
-/* Final Message */
-.final-message {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -10%);
-  width: 90%;
-  max-width: 600px;
-  pointer-events: none;
-}
-
-.final-message.visible {
-  opacity: 1;
-  transform: translate(-50%, -50%);
-}
-
-.final-text {
-  font-family: 'Dancing Script', cursive;
-  font-weight: 700;
-  font-size: 2.8rem;
-  color: var(--pink-deep);
-  margin-bottom: 1.2rem;
-  text-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
-}
-
-.final-subtext {
-  font-family: 'Mitr', sans-serif;
-  font-weight: 300;
-  font-size: 1.1rem;
-  color: var(--pink-hot);
-  line-height: 1.8;
-  letter-spacing: 0.5px;
-  max-width: 80%;
-  margin: 0 auto;
-}
-
-@media (max-width: 480px) {
-  .final-text {
-    font-size: 2.2rem;
-  }
-  .final-subtext {
-    font-size: 1rem;
   }
 }
 
