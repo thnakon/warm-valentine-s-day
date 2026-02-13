@@ -392,7 +392,7 @@ body::before {
 .card-container {
   width: 320px;
   max-width: 90vw;
-  height: 460px;
+  height: 520px;
   margin: 0 auto;
   position: relative;
   transform-style: preserve-3d;
@@ -490,14 +490,15 @@ body::before {
   box-shadow: var(--shadow-card);
   transform: rotateY(180deg);
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
+  overflow-y: auto;
 }
 
 .card-inside-content {
-  padding: 2.5rem 2rem;
+  padding: 2.5rem 1.8rem;
   position: relative;
-  text-align: center;
+  text-align: left;
   width: 100%;
 }
 
@@ -563,6 +564,7 @@ body::before {
   font-size: 1.4rem;
   color: var(--rose-gold);
   margin-top: 1rem;
+  text-align: right;
 }
 
 /* Card Sparkles */
@@ -837,8 +839,8 @@ body::before {
   }
 
   .card-container {
-    width: 260px;
-    height: 380px;
+    width: 280px;
+    height: 440px;
   }
 
   .card-front-text {
@@ -860,8 +862,8 @@ body::before {
   }
 
   .card-container {
-    width: 350px;
-    height: 480px;
+    width: 360px;
+    height: 540px;
   }
 
   .bouquet-image {
