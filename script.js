@@ -224,6 +224,9 @@ function setupCardScreen() {
             card.classList.add('flipped');
             isFlipped = true;
 
+            // Push card up to make room for final message
+            document.querySelector('.card-scene').classList.add('pushed-up');
+
             // Create sparkles inside card
             createSparkles();
 

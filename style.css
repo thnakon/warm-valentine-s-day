@@ -358,6 +358,11 @@ body::before {
 .card-scene {
   perspective: 1200px;
   margin-bottom: 2rem;
+  transition: transform 1s ease 0.8s;
+}
+
+.card-scene.pushed-up {
+  transform: translateY(-60px);
 }
 
 .card-container {
@@ -388,7 +393,7 @@ body::before {
 }
 
 .card-container.flipped {
-  transform: rotateY(180deg);
+  transform: rotateY(180deg) scale(0.8);
 }
 
 .card-face {
