@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="th">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Happy Valentine's Day 💕</title>
-  <meta name="description" content="A special Valentine's Day surprise just for you 💕">
+  <title>Happy Valentine's Day</title>
+  <meta name="description" content="A special Valentine's Day surprise just for you">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Mitr:wght@200;300;400;500&family=Prompt:wght@200;300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body>
   <!-- Floating Hearts Background -->
@@ -17,17 +18,19 @@
   <!-- ===== SCREEN 1: QUESTION ===== -->
   <section id="screen-question" class="screen active">
     <div class="screen-content">
-      <div class="envelope-icon">💌</div>
-      <h1 class="question-title">สวัสดีวันวาเลนไทน์</h1>
-      <p class="question-subtitle">มีคำถามอยากถามหน่อยนะ...</p>
+      <div class="envelope-icon">
+        <i data-lucide="mail-heart" style="width: 80px; height: 80px; color: #ff4081;"></i>
+      </div>
+      <h1 class="question-title">Happy Valentine's Day</h1>
+      <p class="question-subtitle">I have a special question for you...</p>
       <div class="question-card">
-        <p class="question-text">จะเป็นวาเลนไทน์ <br>ของฉันไหม? 💕</p>
+        <p class="question-text">Will you be my Valentine? <i data-lucide="heart" style="display: inline-block; vertical-align: middle; color: #ff1493;"></i></p>
         <div class="button-group">
           <button id="btn-yes" class="btn btn-yes">
-            <span>ได้สิ! 💖</span>
+            <span>Yes, of course!</span>
           </button>
           <button id="btn-no" class="btn btn-no">
-            <span>ไม่เอาา 😜</span>
+            <span>No way</span>
           </button>
         </div>
       </div>
@@ -37,8 +40,8 @@
   <!-- ===== SCREEN 2: FLOWER BOUQUET ===== -->
   <section id="screen-bouquet" class="screen">
     <div class="screen-content">
-      <h2 class="bouquet-title">เก็บช่อดอกไม้นี้ไว้นะ 🌸</h2>
-      <p class="bouquet-subtitle">กดที่ช่อดอกไม้เพื่อรับเซอร์ไพรส์ต่อ</p>
+      <h2 class="bouquet-title">For My Favorite Person <i data-lucide="flower-2" style="display: inline-block; vertical-align: middle; color: #ff69b4;"></i></h2>
+      <p class="bouquet-subtitle">Click the bouquet for a surprise...</p>
       <div class="bouquet-wrapper" id="bouquet-click">
         <img src="assets/bouquet.png" alt="Flower Bouquet" class="bouquet-image">
         <div class="bouquet-glow"></div>
@@ -55,33 +58,38 @@
           <!-- Card Front -->
           <div class="card-face card-front">
             <div class="card-front-decoration">
-              <span class="card-heart">❤️</span>
+              <span class="card-heart">
+                <i data-lucide="heart" style="width: 80px; height: 80px; color: #e91e63; fill: #e91e63;"></i>
+              </span>
               <p class="card-front-text">Happy<br>Valentine's Day</p>
-              <span class="card-tap-hint">แตะเพื่อเปิดอ่าน 💕</span>
+              <span class="card-tap-hint">Tap to open your message <i data-lucide="pointer" style="width: 16px; height: 16px; vertical-align: middle;"></i></span>
             </div>
           </div>
           <!-- Card Back / Inside -->
           <div class="card-face card-back">
             <div class="card-inside-content">
-              <h2 class="card-greeting">ถึงคนพิเศษ 💗</h2>
+              <h2 class="card-greeting">To My Dearest, <i data-lucide="heart" style="display: inline-block; width: 24px; color: #e91e63; fill: #e91e63;"></i></h2>
               <div class="card-message">
-                <p>ขอบคุณที่อยู่ข้างๆ กันเสมอนะ</p>
-                <p>ทุกวันที่มีเธออยู่<br>คือวันที่ดีที่สุดของฉัน</p>
-                <p>รักเธอที่สุดเลย 💕</p>
+                <p>Thank you for always being by my side.</p>
+                <p>Every day with you is my<br>favorite day.</p>
+                <p>I love you more than words can say.</p>
               </div>
-              <p class="card-signature">— ด้วยรักจากฉัน 🤍</p>
+              <p class="card-signature">— With all my love,</p>
               <div class="card-sparkles" id="card-sparkles"></div>
             </div>
           </div>
         </div>
       </div>
       <div class="final-message" id="final-message">
-        <p class="final-text">Happy Valentine's Day 🥰</p>
-        <p class="final-subtext">รักเธอนะ 💕</p>
+        <p class="final-text">Happy Valentine's Day! <i data-lucide="party-popper" style="display: inline-block; width: 24px; color: #ff4081;"></i></p>
+        <p class="final-subtext">Love you forever</p>
       </div>
     </div>
   </section>
 
   <script src="script.js"></script>
+  <script>
+    lucide.createIcons();
+  </script>
 </body>
 </html>

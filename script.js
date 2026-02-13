@@ -17,12 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
 // ===== FLOATING HEARTS BACKGROUND =====
 function createFloatingHearts() {
     const container = document.getElementById('hearts-container');
-    const hearts = ['💕', '💗', '💖', '💞', '🩷', '🤍', '✨', '🌸'];
+    const symbols = ['♥', '♡', '✧', '✨', '❤', '🌸'];
 
     function spawnHeart() {
         const heart = document.createElement('span');
         heart.classList.add('floating-heart');
-        heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.color = '#ffb6c1';
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.fontSize = (Math.random() * 1.2 + 0.6) + 'rem';
         heart.style.animationDuration = (Math.random() * 8 + 6) + 's';
@@ -58,12 +59,12 @@ function setupQuestionScreen() {
     let dodgeCount = 0;
     const maxDodges = 5;
     const messages = [
-        'ไม่เอาา 😜',
-        'กดไม่ได้น้า~ 😏',
-        'เธอแน่ใจเหรอ? 🥺',
-        'ลองใหม่สิ~ 😘',
-        'ฉันไม่ยอม! 💪',
-        'กดอีกฝั่งสิ~ 💖'
+        'Not today',
+        "Can't catch me!",
+        'Are you sure?',
+        'Try again~',
+        'Nice try!',
+        'Click the other one!'
     ];
 
     function dodgeButton() {
@@ -72,7 +73,7 @@ function setupQuestionScreen() {
 
         if (dodgeCount >= maxDodges) {
             // After several dodges, auto-click Yes
-            btnNo.querySelector('span').textContent = 'โอเค ยอมละ 😍';
+            btnNo.querySelector('span').textContent = 'Okay, you win';
             btnNo.style.pointerEvents = 'none';
             setTimeout(() => {
                 btnYes.click();
@@ -110,12 +111,13 @@ function heartExplosion(origin) {
     container.style.top = rect.top + rect.height / 2 + 'px';
     document.body.appendChild(container);
 
-    const emojis = ['❤️', '💕', '💖', '💗', '💞', '🩷', '✨', '🌸', '💐'];
+    const symbols = ['♥', '♡', '✨', '🌸', '✧', '❤'];
 
     for (let i = 0; i < 20; i++) {
         const heart = document.createElement('span');
         heart.classList.add('explosion-heart');
-        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+        heart.style.color = '#ff4081';
         const angle = (Math.PI * 2 * i) / 20;
         const distance = 80 + Math.random() * 120;
         heart.style.setProperty('--tx', Math.cos(angle) * distance + 'px');
@@ -243,14 +245,15 @@ function createSparkles() {
 }
 
 function celebrationBurst() {
-    const hearts = ['❤️', '💕', '💖', '💗', '🩷', '✨', '🌸', '💐', '🥰'];
+    const symbols = ['♥', '♡', '✧', '✨', '❤', '🌸'];
     const container = document.getElementById('hearts-container');
 
     for (let i = 0; i < 15; i++) {
         setTimeout(() => {
             const heart = document.createElement('span');
             heart.classList.add('floating-heart');
-            heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+            heart.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            heart.style.color = '#ff4081';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.fontSize = (Math.random() * 2 + 1) + 'rem';
             heart.style.animationDuration = (Math.random() * 5 + 4) + 's';
