@@ -509,6 +509,41 @@ body::before {
   margin-bottom: 1.5rem;
 }
 
+/* Language Toggle */
+.lang-toggle-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+}
+
+.card-container.flipped .lang-toggle-container {
+  animation: fadeIn 0.5s ease 1s forwards;
+}
+
+.lang-btn {
+  background: white;
+  border: 1px solid var(--pink-soft);
+  color: var(--pink-deep);
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.lang-btn.active {
+  background: var(--pink-deep);
+  color: white;
+  border-color: var(--pink-deep);
+}
+
+.lang-btn:hover:not(.active) {
+  background: var(--pink-light);
+}
+
 .card-message {
   font-family: 'Mitr', sans-serif;
   font-weight: 300;

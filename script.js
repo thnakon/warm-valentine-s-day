@@ -223,8 +223,17 @@ function scatterPetals() {
 }
 
 // ===== SCREEN 3: LOVE CARD =====
+let typingTimeout = null;
+const messages = {
+    en: "To Eye,\n\nThis gift might be simple and not anything fancy, but I want you to know that I chose it, prepared it, and gave it to you with all my heart. Thank you for being with me in all those ordinary days and somehow making them feel special. Being with you makes me feel calm and happy, and I’m really grateful to have you by my side.\n\nI may not be the best with words or romance, but I just want you to know that I’m glad we’re walking this path together. From now on, I hope we can keep staying side by side for as long as we can. Happy Valentine’s Day.",
+    th: "ถึง Eye,\n\nของขวัญชิ้นนี้อาจจะดูธรรมดา ไม่ได้หวือหวาอะไร แต่เราอยากให้รู้ว่าคนให้ตั้งใจเลือก ตั้งใจทำ และตั้งใจให้จริง ๆ ขอบคุณที่อยู่ด้วยกันในทุกวันธรรมดา ๆ ที่ทำให้มันไม่ธรรมดาเลย อยู่ด้วยแล้วสบายใจ ดีใจที่มีเธออยู่ข้าง ๆ เสมอ\n\nอาจไม่ใช่คนพูดเก่งหรือโรแมนติก แต่ก็อยากบอกว่าดีใจนะที่เราได้เดินมาด้วยกันแบบนี้ ต่อจากนี้ก็ขออยู่ข้าง ๆ กันไปเรื่อย ๆ เท่าที่จะทำได้ สุขสันต์วันวาเลนไทน์นะ"
+};
+
 function setupCardScreen() {
     const card = document.getElementById('love-card');
+    const btnEn = document.getElementById('btn-lang-en');
+    const btnTh = document.getElementById('btn-lang-th');
+    const messageEl = document.getElementById('typing-message');
     let isFlipped = false;
 
     card.addEventListener('click', () => {
@@ -235,11 +244,9 @@ function setupCardScreen() {
             // Create sparkles inside card
             createSparkles();
 
-            // Start Typing Message for Eye
+            // Start Typing Message
             setTimeout(() => {
-                const messageEl = document.getElementById('typing-message');
-                const fullText = "To my dearest Eye,\n\nYou are the most beautiful thing that ever happened to me. Thank you for filling my days with joy and my heart with so much love.\n\nI promise to be by your side, to cherish you, and to love you more with every passing day. You mean everything to me, forever and always.";
-                startTyping(messageEl, fullText);
+                startTyping(messageEl, messages.en);
             }, 600);
 
             // Trigger celebration burst on flip
@@ -254,6 +261,23 @@ function setupCardScreen() {
                 }, 100);
             }, 800);
         }
+    });
+
+    // Language Toggles
+    btnEn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (btnEn.classList.contains('active')) return;
+        btnEn.classList.add('active');
+        btnTh.classList.remove('active');
+        startTyping(messageEl, messages.en);
+    });
+
+    btnTh.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (btnTh.classList.contains('active')) return;
+        btnTh.classList.add('active');
+        btnEn.classList.remove('active');
+        startTyping(messageEl, messages.th);
     });
 
     // Handle Continue to Final screen
@@ -331,6 +355,9 @@ function playMusic() {
 }
 
 function startTyping(container, text) {
+    // Clear any previous typing session
+    if (typingTimeout) clearTimeout(typingTimeout);
+
     container.innerHTML = '';
     let i = 0;
 
@@ -353,10 +380,12 @@ function startTyping(container, text) {
             }
             i++;
             container.appendChild(cursor);
-            setTimeout(type, 50); // Typing speed
+            typingTimeout = setTimeout(type, 30); // Slightly faster typing for longer text
         } else {
             // Typing finished, remove cursor after a bit
-            setTimeout(() => cursor.remove(), 2000);
+            setTimeout(() => {
+                if (container.contains(cursor)) cursor.remove();
+            }, 2000);
         }
     }
 
