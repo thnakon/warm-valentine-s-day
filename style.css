@@ -226,6 +226,22 @@ body::before {
   background: var(--pink-light);
 }
 
+.btn-continue {
+  background: var(--pink-light) !important;
+  color: var(--pink-deep) !important;
+  box-shadow: 0 4px 15px rgba(255, 182, 193, 0.3) !important;
+  font-size: 0.9rem !important;
+  padding: 0.6rem 1.5rem !important;
+  min-width: 110px !important;
+  margin: 1.5rem auto 0 !important;
+  border: 1px solid var(--pink-soft) !important;
+}
+
+.btn-continue:hover {
+  background: var(--pink-soft) !important;
+  transform: scale(1.05) !important;
+}
+
 /* ===== HEART EXPLOSION ===== */
 .heart-explosion {
   position: fixed;
@@ -574,6 +590,49 @@ body::before {
 @keyframes wobble {
   0%, 100% { transform: translateY(0) rotate(0deg); }
   50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+/* ===== SCREEN 4: FINAL ===== */
+.final-visual {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.final-img {
+  width: 320px;
+  max-width: 80vw;
+  height: auto;
+  border-radius: 30px;
+  box-shadow: var(--shadow-card);
+  animation: fadeInScale 1s ease forwards;
+}
+
+.speech-bubble {
+  background: white;
+  padding: 1.5rem 2rem;
+  border-radius: 25px;
+  position: relative;
+  box-shadow: 0 10px 25px rgba(233, 30, 99, 0.15);
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--pink-deep);
+  border: 2px solid var(--pink-light);
+  animation: bounce 2s ease-in-out infinite;
+}
+
+.speech-bubble::after {
+  content: '';
+  position: absolute;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-left: 15px solid transparent;
+  border-right: 15px solid transparent;
+  border-bottom: 15px solid white;
 }
 
 /* ===== ANIMATIONS ===== */

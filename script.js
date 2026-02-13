@@ -237,8 +237,26 @@ function setupCardScreen() {
             // Trigger celebration burst on flip
             setTimeout(() => {
                 celebrationBurst();
-            }, 500);
+
+                // Show Continue button after flip
+                const btnContinue = document.getElementById('btn-continue');
+                btnContinue.style.display = 'block';
+                setTimeout(() => {
+                    btnContinue.style.opacity = '1';
+                }, 100);
+            }, 800);
         }
+    });
+
+    // Handle Continue to Final screen
+    const btnContinue = document.getElementById('btn-continue');
+    btnContinue.addEventListener('click', () => {
+        transitionToScreen('screen-final');
+        setTimeout(() => {
+            // Final big celebration
+            celebrationBurst();
+            setTimeout(celebrationBurst, 1000);
+        }, 1000);
     });
 }
 
