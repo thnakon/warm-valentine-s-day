@@ -362,7 +362,8 @@ body::before {
 }
 
 .card-scene.pushed-up {
-  transform: translateY(-60px);
+  transform: translateY(-120vh) rotate(-10deg);
+  opacity: 0;
 }
 
 .card-container {
@@ -545,27 +546,35 @@ body::before {
 .final-message {
   opacity: 0;
   transform: translateY(20px);
-  transition: all 1s ease 0.5s;
+  transition: all 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.8s;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: 100%;
+  pointer-events: none;
 }
 
 .final-message.visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate(-50%, -50%);
 }
 
 .final-text {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   color: var(--pink-deep);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
+  text-shadow: 0 4px 15px rgba(233, 30, 99, 0.2);
 }
 
 .final-subtext {
   font-family: 'Mitr', sans-serif;
   font-weight: 300;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   color: var(--text-light);
+  letter-spacing: 1px;
 }
 
 /* ===== ANIMATIONS ===== */

@@ -224,18 +224,19 @@ function setupCardScreen() {
             card.classList.add('flipped');
             isFlipped = true;
 
-            // Push card up to make room for final message
-            document.querySelector('.card-scene').classList.add('pushed-up');
-
             // Create sparkles inside card
             createSparkles();
 
-            // Show final message
+            // After 2 seconds (time to read the card), fly it away and show final message
             setTimeout(() => {
-                finalMessage.classList.add('visible');
-                // Create a final burst of floating hearts
-                celebrationBurst();
-            }, 1200);
+                document.querySelector('.card-scene').classList.add('pushed-up');
+
+                setTimeout(() => {
+                    finalMessage.classList.add('visible');
+                    // Create a final burst of floating hearts
+                    celebrationBurst();
+                }, 800);
+            }, 2500);
         }
     });
 }
