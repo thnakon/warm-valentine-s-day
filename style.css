@@ -141,11 +141,11 @@ body::before {
 .question-title {
   font-family: 'Dancing Script', cursive;
   font-weight: 700;
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: var(--pink-deep);
   margin-bottom: 0.5rem;
   text-shadow: 0 2px 8px rgba(233, 30, 99, 0.1);
-  white-space: nowrap;
+  padding: 0 1rem;
 }
 
 .question-subtitle {
@@ -840,9 +840,9 @@ body::before {
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 380px) {
+@media (max-width: 480px) {
   .question-title {
-    font-size: 1.6rem;
+    font-size: 1.8rem;
   }
 
   .question-text {
