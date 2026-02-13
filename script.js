@@ -172,6 +172,7 @@ function transitionToScreen(targetId) {
 // ===== SCREEN 2: BOUQUET =====
 function setupBouquetScreen() {
     const bouquet = document.getElementById('bouquet-click');
+    const runner = document.getElementById('runner-container');
 
     bouquet.addEventListener('click', () => {
         // Scatter petals
@@ -182,10 +183,17 @@ function setupBouquetScreen() {
         bouquet.offsetHeight; // trigger reflow
         bouquet.style.animation = 'shake 0.5s ease';
 
-        // Transition to card after petals
+        // Wait a bit, then show runner
         setTimeout(() => {
-            transitionToScreen('screen-card');
-        }, 1800);
+            runner.classList.add('running');
+
+            // After runner finishes (3s animation), transition to card
+            setTimeout(() => {
+                transitionToScreen('screen-card');
+                // Optional: remove class to reset
+                setTimeout(() => runner.classList.remove('running'), 1000);
+            }, 3000);
+        }, 800);
     });
 }
 

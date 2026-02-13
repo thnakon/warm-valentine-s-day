@@ -537,6 +537,45 @@ body::before {
   }
 }
 
+/* ===== RUNNER ANIMATION ===== */
+.runner-container {
+  position: fixed;
+  top: 50%;
+  right: -300px;
+  z-index: 1000;
+  pointer-events: none;
+  display: none;
+  transform: translateY(-50%);
+}
+
+.runner-container.running {
+  display: block;
+  animation: dashAcross 3s linear forwards;
+}
+
+.runner-img {
+  width: 200px;
+  height: auto;
+  animation: wobble 0.3s ease-in-out infinite;
+  filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1));
+}
+
+@keyframes dashAcross {
+  0% {
+    right: -300px;
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    right: 120vw;
+    transform: translateY(-50%) rotate(-10deg);
+  }
+}
+
+@keyframes wobble {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
 /* ===== ANIMATIONS ===== */
 @keyframes fadeInUp {
   from {
