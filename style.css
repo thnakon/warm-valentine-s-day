@@ -370,7 +370,21 @@ body::before {
   transition: transform 1s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
   opacity: 0;
-  animation: fadeInUp 1s ease 0.3s forwards;
+}
+
+#screen-card.active .card-container {
+  animation: flyIn 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+}
+
+@keyframes flyIn {
+  0% {
+    opacity: 0;
+    transform: translate(100vw, -100vh) rotate(20deg) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
 }
 
 .card-container.flipped {
@@ -414,14 +428,6 @@ body::before {
   font-size: 4rem;
   display: block;
   margin-bottom: 1.5rem;
-  animation: heartbeat 1.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-  0%, 100% { transform: scale(1); }
-  15% { transform: scale(1.15); }
-  30% { transform: scale(1); }
-  45% { transform: scale(1.1); }
 }
 
 .card-front-text {
