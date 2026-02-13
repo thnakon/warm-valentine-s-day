@@ -227,16 +227,15 @@ function setupCardScreen() {
             // Create sparkles inside card
             createSparkles();
 
-            // After 2 seconds (time to read the card), fly it away and show final message
+            // After reading time, push card up and show message almost simultaneously
             setTimeout(() => {
                 document.querySelector('.card-scene').classList.add('pushed-up');
 
                 setTimeout(() => {
                     finalMessage.classList.add('visible');
-                    // Create a final burst of floating hearts
                     celebrationBurst();
-                }, 800);
-            }, 2500);
+                }, 300); // Appear sooner as card is pushed
+            }, 3000);
         }
     });
 }

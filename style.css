@@ -574,13 +574,11 @@ body::before {
   font-family: 'Mitr', sans-serif;
   font-weight: 300;
   font-size: 1.1rem;
-  color: var(--text-dark);
+  color: var(--pink-hot);
   line-height: 1.8;
   letter-spacing: 0.5px;
-  background: rgba(255, 255, 255, 0.4);
-  padding: 1rem;
-  border-radius: 20px;
-  backdrop-filter: blur(5px);
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 @media (max-width: 480px) {
