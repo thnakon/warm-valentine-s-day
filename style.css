@@ -308,15 +308,23 @@ body::before {
 }
 
 .bouquet-image {
-  width: 280px;
-  max-width: 70vw;
+  width: 350px;
+  max-width: 85vw;
   height: auto;
-  filter: drop-shadow(0 10px 30px rgba(233, 30, 99, 0.2));
-  transition: filter 0.3s ease;
+  filter: drop-shadow(0 15px 35px rgba(233, 30, 99, 0.25));
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  animation: floatBouquet 4s ease-in-out infinite;
+}
+
+@keyframes floatBouquet {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33% { transform: translateY(-15px) rotate(2deg); }
+  66% { transform: translateY(-5px) rotate(-2deg); }
 }
 
 .bouquet-wrapper:hover .bouquet-image {
-  filter: drop-shadow(0 15px 40px rgba(233, 30, 99, 0.35));
+  filter: drop-shadow(0 20px 45px rgba(233, 30, 99, 0.4));
+  transform: scale(1.08);
 }
 
 .bouquet-glow {
