@@ -1,0 +1,261 @@
+:root {
+    --bg-color: #fff0f3;
+    --envelope-color: #ff85a2;
+    --envelope-dark: #f07290;
+    --envelope-inner: #ffb3c1;
+    --card-bg: #ffffff;
+    --text-color: #4a4a4a;
+    --accent-color: #ff4d6d;
+    --font-luxury: 'Playfair Display', serif;
+    --font-handwriting: 'Dancing Script', cursive;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    font-family: var(--font-luxury);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    color: var(--text-color);
+}
+
+/* Background Hearts */
+.heart-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    color: var(--accent-color);
+    opacity: 0.3;
+    animation: float 10s linear infinite;
+}
+
+@keyframes float {
+    0% { transform: translateY(110vh) rotate(0deg); opacity: 0; }
+    10% { opacity: 0.3; }
+    90% { opacity: 0.3; }
+    100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+}
+
+/* Envelope Container */
+.container {
+    relative: position;
+    z-index: 10;
+}
+
+.envelope-wrapper {
+    position: relative;
+    cursor: pointer;
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background-color: var(--envelope-color);
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+}
+
+.envelope:hover {
+    transform: translateY(-10px);
+}
+
+.front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+
+.flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid var(--envelope-color);
+    transform-origin: top;
+    transition: transform 0.4s 0.3s ease;
+    z-index: 3;
+}
+
+.pocket {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid var(--envelope-inner);
+    border-right: 150px solid var(--envelope-inner);
+    border-bottom: 100px solid var(--envelope-dark);
+    border-radius: 0 0 5px 5px;
+    z-index: 4;
+}
+
+.heart-sticker {
+    position: absolute;
+    top: 80px;
+    left: 135px;
+    font-size: 30px;
+    z-index: 5;
+    transition: transform 0.3s ease;
+}
+
+/* Card */
+.card {
+    position: absolute;
+    bottom: 0;
+    left: 10px;
+    width: 280px;
+    height: 180px;
+    background-color: var(--card-bg);
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    z-index: 2;
+    transition: transform 0.6s ease, height 0.6s ease, width 0.6s ease, left 0.6s ease, bottom 0.6s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.card h1 {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 0.5s 0.6s ease;
+}
+
+.card .message {
+    font-size: 0.8rem;
+    line-height: 1.4;
+    opacity: 0;
+    transition: opacity 0.5s 0.7s ease;
+}
+
+.handwriting {
+    font-family: var(--font-handwriting);
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    opacity: 0;
+    transition: opacity 0.5s 0.8s ease;
+}
+
+.interactive-prompt {
+    font-size: 0.6rem;
+    margin-top: 15px;
+    color: #aaa;
+    opacity: 0;
+    font-style: italic;
+}
+
+/* Open State */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+}
+
+.envelope.open .card {
+    transform: translateY(-100px);
+    height: 400px;
+    width: 320px;
+    left: -10px;
+    bottom: -100px;
+    z-index: 10;
+    padding: 40px 25px;
+}
+
+.envelope.open .card h1,
+.envelope.open .card .message,
+.envelope.open .card .handwriting,
+.envelope.open .card .interactive-prompt {
+    opacity: 1;
+}
+
+.envelope.open .heart-sticker {
+    transform: scale(0);
+}
+
+/* Garden Overlay */
+.garden-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 240, 243, 0.9);
+    z-index: 1000;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.garden-prompt {
+    font-family: var(--font-handwriting);
+    font-size: 2rem;
+    color: var(--accent-color);
+    margin-bottom: 2rem;
+    pointer-events: none;
+}
+
+.close-garden {
+    position: absolute;
+    bottom: 40px;
+    padding: 10px 20px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    font-family: var(--font-luxury);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+}
+
+.flower {
+    position: absolute;
+    font-size: 2rem;
+    pointer-events: none;
+    animation: bloom 1s ease-out forwards;
+}
+
+@keyframes bloom {
+    0% { transform: scale(0) rotate(0deg); opacity: 0; }
+    40% { transform: scale(1.2) rotate(20deg); opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    .envelope {
+        width: 260px;
+    }
+    .flap, .pocket {
+        border-left-width: 130px;
+        border-right-width: 130px;
+    }
+    .envelope.open .card {
+        width: 280px;
+        left: -10px;
+    }
+}

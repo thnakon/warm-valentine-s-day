@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Valentine's Surprise for You ❤️</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="heart-container" id="heartContainer"></div>
+    
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope" id="envelope">
+                <div class="front">
+                    <div class="flap"></div>
+                    <div class="pocket"></div>
+                    <div class="heart-sticker">❤️</div>
+                </div>
+                <div class="card" id="card">
+                    <div class="card-content">
+                        <h1>Happy Valentine's Day</h1>
+                        <p class="handwriting">My dearest love,</p>
+                        <p class="message">
+                            Every moment with you is like a beautiful dream come true. You make my world brighter and my heart fuller. 
+                            I'm so lucky to have you in my life.
+                        </p>
+                        <p class="handwriting signature">With all my love, [Your Name]</p>
+                        <div class="interactive-prompt">Click the card to see the garden bloom...</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="garden-overlay" id="gardenOverlay">
+        <div class="garden-prompt">Tap anywhere to bloom flowers! 🌸</div>
+        <button class="close-garden" id="closeGarden">Back to Card</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
